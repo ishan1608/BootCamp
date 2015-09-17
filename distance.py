@@ -44,116 +44,30 @@ for i in range(rows):
 		else:
 			playground[i][j] = -1
 
+# Offset values to aid in calculating 8-distance
+offsets = [[-1,-1], [-1,0], [-1, 1],
+		   [ 0,-1],         [ 0, 1],
+		   [ 1,-1], [ 1,0], [ 1, 1]]
 # Calculating the distance from destination ('0') First Pass
 for i in range(rows):
 	for j in range(columns):
 		# Default values for 8-connected distance measurement
 		defaultValues = []
 		if playground[i][j] > -2 and playground[i][j] != 0:
-			# 1 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
+			# 8 / 8 Connected calculation
+			for ofs in offsets:
+				rpos = i + ofs[0]
+				cpos = j + ofs[1]
+				if args.verbose:
+					# Printing Verbose information
+					print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
+				if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
+					if playground[rpos][cpos] > -1:
+						defaultValues.append(playground[rpos][cpos] + 1)
+					else:
+						pass
 				else:
 					pass
-			else:
-				pass
-			# 2 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j - 0
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 3 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 4 / 8 of  8 - Connected
-			rpos = i - 0
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 5 / 8 of  8 - Connected
-			rpos = i - 0
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 6 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 7 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j - 0
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 8 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
 			# End of calculation of 8 - distance
 		else:
 			if args.verbose:
@@ -179,110 +93,20 @@ for i in reversed(range(rows)):
 		# Default values for 8-connected distance measurement
 		defaultValues = []
 		if playground[i][j] > -2 and playground[i][j] != 0:
-			# 1 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
+			# 8 / 8 Connected calculation
+			for ofs in offsets:
+				rpos = i + ofs[0]
+				cpos = j + ofs[1]
+				if args.verbose:
+					# Printing Verbose information
+					print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
+				if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
+					if playground[rpos][cpos] > -1:
+						defaultValues.append(playground[rpos][cpos] + 1)
+					else:
+						pass
 				else:
 					pass
-			else:
-				pass
-			# 2 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j - 0
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 3 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 4 / 8 of  8 - Connected
-			rpos = i - 0
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 5 / 8 of  8 - Connected
-			rpos = i - 0
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 6 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 7 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j - 0
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 8 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
 			# End of calculation of 8 - distance
 		else:
 			if args.verbose:
@@ -308,110 +132,20 @@ for i in range(rows):
 		# Default values for 8-connected distance measurement
 		defaultValues = []
 		if playground[i][j] > -2 and playground[i][j] != 0:
-			# 1 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
+			# 8 / 8 Connected calculation
+			for ofs in offsets:
+				rpos = i + ofs[0]
+				cpos = j + ofs[1]
+				if args.verbose:
+					# Printing Verbose information
+					print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
+				if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
+					if playground[rpos][cpos] > -1:
+						defaultValues.append(playground[rpos][cpos] + 1)
+					else:
+						pass
 				else:
 					pass
-			else:
-				pass
-			# 2 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j - 0
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 3 / 8 of  8 - Connected
-			rpos = i - 1
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 4 / 8 of  8 - Connected
-			rpos = i - 0
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 5 / 8 of  8 - Connected
-			rpos = i - 0
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 6 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j - 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 7 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j - 0
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
-			# 8 / 8 of  8 - Connected
-			rpos = i + 1
-			cpos = j + 1
-			if args.verbose:
-				# Printing Verbose information
-				print(rpos > -1 ,cpos > -1 ,rpos < rows, cpos < columns, sep = " ")
-			if rpos > -1 and cpos > -1 and rpos < rows and cpos < columns:
-				if playground[rpos][cpos] > -1:
-					defaultValues.append(playground[rpos][cpos] + 1)
-				else:
-					pass
-			else:
-				pass
 			# End of calculation of 8 - distance
 		else:
 			if args.verbose:
